@@ -32,7 +32,7 @@ architecture test of tb_motor is
 begin
 
     -- Instanciação do Componente Sob Teste (Unit Under Test - UUT)
-    -- É aqui que "colocamos o chip na bancada de testes" 🔌
+    -- É aqui que "colocamos o chip na bancada de testes" 
     UUT : component motor
         port map (
             move_up      => s_move_up,
@@ -42,7 +42,7 @@ begin
             moving       => s_moving
         );
 
-    -- Processo de Estímulo: O roteiro do nosso teste 📝
+    -- Processo de Estímulo: O roteiro do nosso teste 
     stim_proc : process is
     begin
         report "Iniciando simulação do motor...";
