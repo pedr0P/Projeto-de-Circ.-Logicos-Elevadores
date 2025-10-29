@@ -5,23 +5,26 @@ entity tb_det_andar is
     end tb_det_andar;
 
 architecture behavior of tb_det_andar is
-    signal clk : STD_LOGIC;
-    signal fsi : STD_LOGIC_VECTOR(4 downto 0);
-    signal mov : BIT_VECTOR(1 downto 0);
-    signal fso : STD_LOGIC_VECTOR(4 downto 0);
+    signal clk   : STD_LOGIC;
+    signal reset : STD_LOGIC;
+    signal fsi   : STD_LOGIC_VECTOR(4 downto 0);
+    signal mov   : STD_LOGIC_VECTOR(1 downto 0);
+    signal fso   : STD_LOGIC_VECTOR(4 downto 0);
 
     component det_andar
         port (
-                 clk : in STD_LOGIC;
-                 fsi : in STD_LOGIC_VECTOR(4 downto 0);
-                 mov : in BIT_VECTOR(1 downto 0);
-                 fso : out STD_LOGIC_VECTOR(4 downto 0)
+                 clk   : in STD_LOGIC;
+                 reset : in STD_LOGIC;
+                 fsi   : in STD_LOGIC_VECTOR(4 downto 0);
+                 mov   : in STD_LOGIC_VECTOR(1 downto 0);
+                 fso   : out STD_LOGIC_VECTOR(4 downto 0)
              );
     end component;
 begin
     uut: det_andar
     port map (
                  clk => clk,
+                 reset => reset,
                  fsi => fsi,
                  mov => mov,
                  fso => fso
@@ -64,6 +67,10 @@ begin
 
         clk <= '0'; wait for 10 ns; clk <= '1';
         fsi <= "00100"; mov <= "01"; wait for 10 ns;
+        wait for 10 ns;
+
+        clk <= '0'; wait for 10 ns; clk <= '1';
+        reset <= '1'; wait for 10 ns;
         wait for 10 ns;
         wait;
     end process;
