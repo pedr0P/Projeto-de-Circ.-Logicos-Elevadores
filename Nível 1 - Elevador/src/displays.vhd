@@ -5,14 +5,14 @@ USE ieee.numeric_std.all;
 ENTITY displays IS
     PORT (
         floor_sensor : IN  STD_LOGIC_VECTOR(4 DOWNTO 0); -- entrada do sensor de andar (0 - 31)
-        seg7_D1      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0); -- saÃ­da da dezena
-        seg7_D2      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)  -- saÃ­da da unidade
+        seg7_D0      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0); -- saída da unidade
+        seg7_D1      : OUT STD_LOGIC_VECTOR(6 DOWNTO 0)  -- saída da dezena
     );
 END ENTITY displays;
 
 ARCHITECTURE estrutural OF displays IS
 
-    -- declaraÃ§Ã£o do componente bcd_to_7seg
+    -- declaração do componente bcd_to_7seg
     COMPONENT bcd_to_7seg IS
         PORT (
             bcd_in  : IN  STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -20,7 +20,7 @@ ARCHITECTURE estrutural OF displays IS
         );
     END COMPONENT bcd_to_7seg;
 
-    -- declaraÃ§Ã£o dos sinais internos
+    -- declaração dos sinais internos
     SIGNAL s_bcd_dezena  : STD_LOGIC_VECTOR(3 DOWNTO 0);
     SIGNAL s_bcd_unidade : STD_LOGIC_VECTOR(3 DOWNTO 0);
 
@@ -42,18 +42,18 @@ BEGIN
         
     END PROCESS;
 
-    -- instanciaÃ§Ã£o dos componentes
+    -- instanciação dos componentes
     
     U1_DEZENA : bcd_to_7seg
     PORT MAP (
         bcd_in  => s_bcd_dezena,  -- fio da dezena
-        seg_out => seg7_D1        -- saÃ­da para o display da dezena
+        seg_out => seg7_D1        -- saída para o display da dezena
     );
 
     U2_UNIDADE : bcd_to_7seg
     PORT MAP (
         bcd_in  => s_bcd_unidade, -- fio da unidade
-        seg_out => seg7_D2        -- saÃ­da para o display da unidade
+        seg_out => seg7_D0        -- saída para o display da unidade
     );
 
 END ARCHITECTURE estrutural;
