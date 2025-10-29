@@ -28,7 +28,7 @@ architecture test of tb_custo_distancia is
 begin
 
     -- Instanciação do Componente Sob Teste
-    -- É aqui que conectamos os fios ao nosso componente 🔌
+    -- É aqui que conectamos os fios ao nosso componente
     UUT : component custo_distancia
         port map (
             chamada_ativa => s_chamada_ativa,
@@ -36,7 +36,7 @@ begin
             distancia     => s_distancia
         );
 
-    -- Processo de Estímulo: O roteiro do nosso teste 📝
+    -- Processo de Estímulo: O roteiro do nosso teste
     stim_proc : process is
     begin
         report "Iniciando simulação do calculador de distância...";
