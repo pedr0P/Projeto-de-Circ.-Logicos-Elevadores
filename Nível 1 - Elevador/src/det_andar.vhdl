@@ -1,13 +1,13 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+use IEEE.NUMERIC_STD_UNSIGNED.ALL;
 
 entity det_andar is
     port (
              clk : in STD_LOGIC;
 
              fsi : in STD_LOGIC_VECTOR(4 downto 0);
-             mov : in BIT_VECTOR(1 downto 0);
+             mov : in STD_LOGIC_VECTOR(1 downto 0);
 
              fso : out STD_LOGIC_VECTOR(4 downto 0)
          );
