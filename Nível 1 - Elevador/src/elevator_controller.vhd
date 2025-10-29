@@ -50,6 +50,9 @@ begin
             move_down     <= '0'; 
             motor_enable  <= '0';
             brake         <= '1'; -- Ativa o freio (estado seguro)
+
+            clear_command <= '0';
+            current_floor <= (others => '0');
             
         -- O que acontece a cada subida do clock
         elsif rising_edge(clk) then

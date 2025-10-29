@@ -28,10 +28,21 @@ architecture comportamental of queue_registers is
     
 begin
 
-    -- Lógica Combinacional: Cria uma máscara de "NÃO LIMPE"
-    -- que só tem um '0' no andar atual, e apenas se o comando 'clear' estiver ativo.
-    s_clear_mask <= (others => '1'); -- Padrão: não limpa nada
-    s_clear_mask(to_integer(unsigned(current_floor))) <= NOT clear_command; -- Se clear='1', máscara vira '0' no andar
+    Generate_Clear_Mask_Proc : process(current_floor, clear_command)
+        variable v_clear_floor_int : integer range 0 to w-1;
+    begin
+        -- 1. Começa com a máscara padrão (não limpa nada)
+        s_clear_mask <= (others => '1'); 
+        
+        -- 2. Se o comando de limpar estiver ativo...
+        if clear_command = '1' then
+            -- ...calcula o índice do andar a ser limpo...
+            v_clear_floor_int := to_integer(unsigned(current_floor));
+            -- ...e define o bit correspondente da máscara para '0'.
+            s_clear_mask(v_clear_floor_int) <= '0'; 
+        end if;
+        -- (Se clear_command = '0', a máscara permanece toda em '1')
+    end process Generate_Clear_Mask_Proc;
 
     process(clk, reset)
     begin
