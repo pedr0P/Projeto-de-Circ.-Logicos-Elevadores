@@ -4,6 +4,8 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity det_andar is
     port (
+             clk : in STD_LOGIC;
+
              fsi : in STD_LOGIC_VECTOR(4 downto 0);
              mov : in BIT_VECTOR(1 downto 0);
 
@@ -20,30 +22,32 @@ begin
     -- Devolve:
     -- Floor_sensor[0..4] (fso := floor_sensor_out)
 
-    p_andar : process(fsi, mov)
+    p_andar : process(clk, fsi, mov)
     begin
-        case mov is
+        if rising_edge(clk) then
+            case mov is
             -- Parado:
-            when "00" => fso <= fsi;
+                when "00" => fso <= fsi;
 
             -- Descendo:
-            when "01" =>
-                if fsi /= 0 then
-                    fso <= fsi - 1;
-                else
-                    fso <= fsi;
-                end if;
+                when "01" =>
+                    if fsi /= 0 then
+                        fso <= fsi - 1;
+                    else
+                        fso <= fsi;
+                    end if;
 
             -- Subindo:
-            when "10" => 
-                if fsi /= 31 then
-                    fso <= fsi + 1;
-                else
-                    fso <= fsi;
-                end if;
+                when "10" => 
+                    if fsi /= 31 then
+                        fso <= fsi + 1;
+                    else
+                        fso <= fsi;
+                    end if;
             -- Nunca deveria acontecer:
-            when "11" => fso <= fsi;
-        end case;
+                when "11" => fso <= fsi;
+            end case;
+        end if;
     end process p_andar;
 end rtl;
 
