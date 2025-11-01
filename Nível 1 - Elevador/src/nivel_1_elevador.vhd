@@ -19,7 +19,8 @@ entity nivel_1_elevador is
         signal seg7_D0: out STD_LOGIC_VECTOR(6 downto 0);    
         signal seg7_D1: out STD_LOGIC_VECTOR(6 downto 0);    
         signal door_open_closed : out STD_LOGIC;
-        signal moving : out STD_LOGIC_VECTOR(1 downto 0)
+        signal moving : out STD_LOGIC_VECTOR(1 downto 0);
+        signal o_floor_sensor : out STD_LOGIC_VECTOR(4 downto 0)
     );   
 end nivel_1_elevador;
 
@@ -222,4 +223,5 @@ begin
     -- LIGAÇÃO FINAL DAS SAÍDAS
     -- Conecta o fio interno 's_moving' à porta de saída 'moving'
     moving <= s_moving;
+    o_floor_sensor <= s_floor_sensor;
 end estrutural;

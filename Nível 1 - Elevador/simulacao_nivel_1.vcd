@@ -1,0 +1,925 @@
+$date
+  Sat Nov  1 16:35:48 2025
+$end
+$version
+  GHDL v0
+$end
+$timescale
+  1 fs
+$end
+$scope module standard $end
+$upscope $end
+$scope module std_logic_1164 $end
+$upscope $end
+$scope module numeric_std $end
+$upscope $end
+$scope module tb_nivel_1_elevador $end
+$var reg 1 ! s_clk $end
+$var reg 1 " s_reset $end
+$var reg 32 # s_dest_request[31:0] $end
+$var reg 1 $ s_solicit_enable $end
+$var reg 5 % s_solicit_floor[4:0] $end
+$var reg 1 & s_solicit_dir $end
+$var reg 7 ' s_seg7_d0[6:0] $end
+$var reg 7 ( s_seg7_d1[6:0] $end
+$var reg 1 ) s_door_open_closed $end
+$var reg 2 * s_moving[1:0] $end
+$var reg 1 + sim_finished $end
+$scope module uut $end
+$var reg 1 , clk $end
+$var reg 1 - reset $end
+$var reg 32 . dest_request[31:0] $end
+$var reg 1 / solicit_enable $end
+$var reg 5 0 solicit_floor[4:0] $end
+$var reg 1 1 solicit_dir $end
+$var reg 7 2 seg7_d0[6:0] $end
+$var reg 7 3 seg7_d1[6:0] $end
+$var reg 1 4 door_open_closed $end
+$var reg 2 5 moving[1:0] $end
+$var reg 5 6 o_floor_sensor[4:0] $end
+$var reg 5 7 s_floor_sensor[4:0] $end
+$var reg 32 8 s_new_requests_up[31:0] $end
+$var reg 32 9 s_new_requests_down[31:0] $end
+$var reg 32 : s_queue_up[31:0] $end
+$var reg 32 ; s_queue_down[31:0] $end
+$var reg 1 < s_clear_command $end
+$var reg 5 = s_current_floor[4:0] $end
+$var reg 1 > s_move_up $end
+$var reg 1 ? s_move_down $end
+$var reg 1 @ s_motor_enable $end
+$var reg 1 A s_brake $end
+$var reg 2 B s_moving[1:0] $end
+$scope module u_floor_controller $end
+$var reg 5 C floor_sensor[4:0] $end
+$var reg 32 D dest_request[31:0] $end
+$var reg 1 E solicit_enable $end
+$var reg 5 F solicit_floor[4:0] $end
+$var reg 1 G solicit_dir $end
+$var reg 32 H queue_down[31:0] $end
+$var reg 32 I queue_up[31:0] $end
+$upscope $end
+$scope module u_queue_registers $end
+$var reg 1 J clk $end
+$var reg 1 K reset $end
+$var reg 32 L new_requests_up[31:0] $end
+$var reg 32 M new_requests_down[31:0] $end
+$var reg 1 N clear_command $end
+$var reg 5 O current_floor[4:0] $end
+$var reg 32 P queue_up[31:0] $end
+$var reg 32 Q queue_down[31:0] $end
+$var reg 32 R s_queue_up[31:0] $end
+$var reg 32 S s_queue_down[31:0] $end
+$var reg 32 T s_clear_mask[31:0] $end
+$upscope $end
+$scope module u_elevator_controller $end
+$var reg 1 U clk $end
+$var reg 1 V reset $end
+$var reg 5 W floor_sensor[4:0] $end
+$var reg 32 X queue_up[31:0] $end
+$var reg 32 Y queue_down[31:0] $end
+$var reg 1 Z move_up $end
+$var reg 1 [ move_down $end
+$var reg 1 \ motor_enable $end
+$var reg 1 ] brake $end
+$var reg 1 ^ clear_command $end
+$var reg 5 _ current_floor[4:0] $end
+$comment current_state is not handled $end
+$var integer 32 ` target_floor $end
+$upscope $end
+$scope module u_motor $end
+$var reg 1 a move_up $end
+$var reg 1 b move_down $end
+$var reg 1 c motor_enable $end
+$var reg 1 d brake $end
+$var reg 2 e moving[1:0] $end
+$upscope $end
+$scope module u_floor_detector $end
+$var reg 1 f clk $end
+$var reg 1 g reset $end
+$var reg 2 h mov[1:0] $end
+$var reg 5 i fso[4:0] $end
+$var reg 5 j current_floor_reg[4:0] $end
+$upscope $end
+$scope module u_door $end
+$var reg 2 k moving[1:0] $end
+$var reg 1 l door_open_closed $end
+$upscope $end
+$scope module u_displays $end
+$var reg 5 m floor_sensor[4:0] $end
+$var reg 7 n seg7_d0[6:0] $end
+$var reg 7 o seg7_d1[6:0] $end
+$var reg 4 p s_bcd_dezena[3:0] $end
+$var reg 4 q s_bcd_unidade[3:0] $end
+$scope module u1_dezena $end
+$var reg 4 r bcd_in[3:0] $end
+$var reg 7 s seg_out[6:0] $end
+$upscope $end
+$scope module u2_unidade $end
+$var reg 4 t bcd_in[3:0] $end
+$var reg 7 u seg_out[6:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+0!
+1"
+b00000000000000000000000000000000 #
+0$
+b00000 %
+0&
+b1111110 '
+b1111110 (
+1)
+b00 *
+0+
+0,
+1-
+b00000000000000000000000000000000 .
+0/
+b00000 0
+01
+b1111110 2
+b1111110 3
+14
+b00 5
+b00000 6
+b00000 7
+b00000000000000000000000000000000 8
+b00000000000000000000000000000000 9
+b00000000000000000000000000000000 :
+b00000000000000000000000000000000 ;
+0<
+b00000 =
+0>
+0?
+0@
+1A
+b00 B
+b00000 C
+b00000000000000000000000000000000 D
+0E
+b00000 F
+0G
+b00000000000000000000000000000000 H
+b00000000000000000000000000000000 I
+0J
+1K
+b00000000000000000000000000000000 L
+b00000000000000000000000000000000 M
+0N
+b00000 O
+b00000000000000000000000000000000 P
+b00000000000000000000000000000000 Q
+b00000000000000000000000000000000 R
+b00000000000000000000000000000000 S
+b11111111111111111111111111111111 T
+0U
+1V
+b00000 W
+b00000000000000000000000000000000 X
+b00000000000000000000000000000000 Y
+0Z
+0[
+0\
+1]
+0^
+b00000 _
+b0 `
+0a
+0b
+0c
+1d
+b00 e
+0f
+1g
+b00 h
+b00000 i
+b00000 j
+b00 k
+1l
+b00000 m
+b1111110 n
+b1111110 o
+b0000 p
+b0000 q
+b0000 r
+b1111110 s
+b0000 t
+b1111110 u
+#5000000
+1!
+1,
+1J
+1U
+1f
+#10000000
+0!
+0,
+0J
+0U
+0f
+#15000000
+1!
+1,
+1J
+1U
+1f
+#20000000
+0!
+0"
+0,
+0-
+0J
+0K
+0U
+0V
+0f
+0g
+#25000000
+1!
+b00000000000000000000000000100000 #
+1,
+b00000000000000000000000000100000 .
+b00000000000000000000000000100000 8
+b00000000000000000000000000100000 D
+b00000000000000000000000000100000 I
+1J
+b00000000000000000000000000100000 L
+1U
+1f
+#30000000
+0!
+0,
+0J
+0U
+0f
+#35000000
+1!
+b00000000000000000000000000000000 #
+1,
+b00000000000000000000000000000000 .
+b00000000000000000000000000000000 8
+b00000000000000000000000000100000 :
+b00000000000000000000000000000000 D
+b00000000000000000000000000000000 I
+1J
+b00000000000000000000000000000000 L
+b00000000000000000000000000100000 P
+b00000000000000000000000000100000 R
+1U
+b00000000000000000000000000100000 X
+1f
+#40000000
+0!
+0,
+0J
+0U
+0f
+#45000000
+1!
+1,
+1J
+1U
+b101 `
+1f
+#50000000
+0!
+0,
+0J
+0U
+0f
+#55000000
+1!
+0)
+b10 *
+1,
+04
+b10 5
+1>
+1@
+0A
+b10 B
+1J
+1U
+1Z
+1\
+0]
+1a
+1c
+0d
+b10 e
+1f
+b10 h
+b10 k
+0l
+#60000000
+0!
+0,
+0J
+0U
+0f
+#65000000
+1!
+b0110000 '
+1,
+b0110000 2
+b00001 6
+b00001 7
+b00001 C
+1J
+1U
+b00001 W
+1f
+b00001 i
+b00001 j
+b00001 m
+b0110000 n
+b0001 q
+b0001 t
+b0110000 u
+#70000000
+0!
+0,
+0J
+0U
+0f
+#75000000
+1!
+b1101101 '
+1,
+b1101101 2
+b00010 6
+b00010 7
+b00010 C
+1J
+1U
+b00010 W
+1f
+b00010 i
+b00010 j
+b00010 m
+b1101101 n
+b0010 q
+b0010 t
+b1101101 u
+#80000000
+0!
+0,
+0J
+0U
+0f
+#85000000
+1!
+b1111001 '
+1,
+b1111001 2
+b00011 6
+b00011 7
+b00011 C
+1J
+1U
+b00011 W
+1f
+b00011 i
+b00011 j
+b00011 m
+b1111001 n
+b0011 q
+b0011 t
+b1111001 u
+#90000000
+0!
+0,
+0J
+0U
+0f
+#95000000
+1!
+b0110011 '
+1,
+b0110011 2
+b00100 6
+b00100 7
+b00100 C
+1J
+1U
+b00100 W
+1f
+b00100 i
+b00100 j
+b00100 m
+b0110011 n
+b0100 q
+b0100 t
+b0110011 u
+#100000000
+0!
+0,
+0J
+0U
+0f
+#105000000
+1!
+b1011011 '
+1,
+b1011011 2
+b00101 6
+b00101 7
+b00101 C
+1J
+1U
+b00101 W
+1f
+b00101 i
+b00101 j
+b00101 m
+b1011011 n
+b0101 q
+b0101 t
+b1011011 u
+#110000000
+0!
+0,
+0J
+0U
+0f
+#115000000
+1!
+b1011111 '
+1,
+b1011111 2
+b00110 6
+b00110 7
+1<
+b00101 =
+b00110 C
+1J
+1N
+b00101 O
+b11111111111111111111111111011111 T
+1U
+b00110 W
+1^
+b00101 _
+1f
+b00110 i
+b00110 j
+b00110 m
+b1011111 n
+b0110 q
+b0110 t
+b1011111 u
+#120000000
+0!
+0,
+0J
+0U
+0f
+#125000000
+1!
+b1110000 '
+1)
+b00 *
+1,
+b1110000 2
+14
+b00 5
+b00111 6
+b00111 7
+b00000000000000000000000000000000 :
+0<
+0>
+0@
+1A
+b00 B
+b00111 C
+1J
+0N
+b00000000000000000000000000000000 P
+b00000000000000000000000000000000 R
+b11111111111111111111111111111111 T
+1U
+b00111 W
+b00000000000000000000000000000000 X
+0Z
+0\
+1]
+0^
+0a
+0c
+1d
+b00 e
+1f
+b00 h
+b00111 i
+b00111 j
+b00 k
+1l
+b00111 m
+b1110000 n
+b0111 q
+b0111 t
+b1110000 u
+#130000000
+0!
+0,
+0J
+0U
+0f
+#135000000
+1!
+1,
+1J
+1U
+1f
+#140000000
+0!
+0,
+0J
+0U
+0f
+#145000000
+1!
+1,
+1J
+1U
+1f
+#150000000
+0!
+0,
+0J
+0U
+0f
+#155000000
+1!
+1,
+1J
+1U
+1f
+#160000000
+0!
+0,
+0J
+0U
+0f
+#165000000
+1!
+1,
+1J
+1U
+1f
+#170000000
+0!
+0,
+0J
+0U
+0f
+#175000000
+1!
+1,
+1J
+1U
+1f
+#180000000
+0!
+0,
+0J
+0U
+0f
+#185000000
+1!
+1,
+1J
+1U
+1f
+#190000000
+0!
+0,
+0J
+0U
+0f
+#195000000
+1!
+1,
+1J
+1U
+1f
+#200000000
+0!
+0,
+0J
+0U
+0f
+#205000000
+1!
+1,
+1J
+1U
+1f
+#210000000
+0!
+0,
+0J
+0U
+0f
+#215000000
+1!
+1,
+1J
+1U
+1f
+#220000000
+0!
+0,
+0J
+0U
+0f
+#225000000
+1!
+0$
+b00010 %
+1,
+0/
+b00010 0
+b00000000000000000000000000000100 9
+0E
+b00010 F
+b00000000000000000000000000000100 H
+1J
+b00000000000000000000000000000100 M
+1U
+1f
+#230000000
+0!
+0,
+0J
+0U
+0f
+#235000000
+1!
+1,
+b00000000000000000000000000000100 ;
+1J
+b00000000000000000000000000000100 Q
+b00000000000000000000000000000100 S
+1U
+b00000000000000000000000000000100 Y
+1f
+#240000000
+0!
+0,
+0J
+0U
+0f
+#245000000
+1!
+1,
+1J
+1U
+b10 `
+1f
+#250000000
+0!
+0,
+0J
+0U
+0f
+#255000000
+1!
+0)
+b01 *
+1,
+04
+b01 5
+1?
+1@
+0A
+b01 B
+1J
+1U
+1[
+1\
+0]
+1b
+1c
+0d
+b01 e
+1f
+b01 h
+b01 k
+0l
+#260000000
+0!
+0,
+0J
+0U
+0f
+#265000000
+1!
+b1011111 '
+1,
+b1011111 2
+b00110 6
+b00110 7
+b00000000000000000000000000000000 9
+b00110 C
+b00000000000000000000000000000000 H
+1J
+b00000000000000000000000000000000 M
+1U
+b00110 W
+1f
+b00110 i
+b00110 j
+b00110 m
+b1011111 n
+b0110 q
+b0110 t
+b1011111 u
+#270000000
+0!
+0,
+0J
+0U
+0f
+#275000000
+1!
+b1011011 '
+1,
+b1011011 2
+b00101 6
+b00101 7
+b00101 C
+1J
+1U
+b00101 W
+1f
+b00101 i
+b00101 j
+b00101 m
+b1011011 n
+b0101 q
+b0101 t
+b1011011 u
+#280000000
+0!
+0,
+0J
+0U
+0f
+#285000000
+1!
+b0110011 '
+1,
+b0110011 2
+b00100 6
+b00100 7
+b00100 C
+1J
+1U
+b00100 W
+1f
+b00100 i
+b00100 j
+b00100 m
+b0110011 n
+b0100 q
+b0100 t
+b0110011 u
+#290000000
+0!
+0,
+0J
+0U
+0f
+#295000000
+1!
+b1111001 '
+1,
+b1111001 2
+b00011 6
+b00011 7
+b00011 C
+1J
+1U
+b00011 W
+1f
+b00011 i
+b00011 j
+b00011 m
+b1111001 n
+b0011 q
+b0011 t
+b1111001 u
+#300000000
+0!
+0,
+0J
+0U
+0f
+#305000000
+1!
+b1101101 '
+1,
+b1101101 2
+b00010 6
+b00010 7
+b00010 C
+1J
+1U
+b00010 W
+1f
+b00010 i
+b00010 j
+b00010 m
+b1101101 n
+b0010 q
+b0010 t
+b1101101 u
+#310000000
+0!
+0,
+0J
+0U
+0f
+#315000000
+1!
+b0110000 '
+1,
+b0110000 2
+b00001 6
+b00001 7
+1<
+b00010 =
+b00001 C
+1J
+1N
+b00010 O
+b11111111111111111111111111111011 T
+1U
+b00001 W
+1^
+b00010 _
+1f
+b00001 i
+b00001 j
+b00001 m
+b0110000 n
+b0001 q
+b0001 t
+b0110000 u
+#320000000
+0!
+0,
+0J
+0U
+0f
+#325000000
+1!
+b1111110 '
+1)
+b00 *
+1+
+1,
+b1111110 2
+14
+b00 5
+b00000 6
+b00000 7
+b00000000000000000000000000000000 ;
+0<
+0?
+0@
+1A
+b00 B
+b00000 C
+1J
+0N
+b00000000000000000000000000000000 Q
+b00000000000000000000000000000000 S
+b11111111111111111111111111111111 T
+1U
+b00000 W
+b00000000000000000000000000000000 Y
+0[
+0\
+1]
+0^
+0b
+0c
+1d
+b00 e
+1f
+b00 h
+b00000 i
+b00000 j
+b00 k
+1l
+b00000 m
+b1111110 n
+b0000 q
+b0000 t
+b1111110 u
+#330000000

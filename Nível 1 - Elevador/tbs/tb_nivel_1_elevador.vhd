@@ -31,7 +31,9 @@ architecture test of tb_nivel_1_elevador is
             signal seg7_D0: out STD_LOGIC_VECTOR(6 downto 0);    
             signal seg7_D1: out STD_LOGIC_VECTOR(6 downto 0);    
             signal door_open_closed : out STD_LOGIC;
-            signal moving : out STD_LOGIC_VECTOR(1 downto 0)
+            signal moving : out STD_LOGIC_VECTOR(1 downto 0);
+
+            signal o_floor_sensor : out STD_LOGIC_VECTOR(4 downto 0)
         );   
     end component;
 

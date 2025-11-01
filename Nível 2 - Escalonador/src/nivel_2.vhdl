@@ -8,10 +8,6 @@ entity nivel_2 is
                  clk   : in STD_LOGIC;
                  reset : in STD_LOGIC;
              -- Entradas:
-                 -- Dest_request:
-                 um_destino : in STD_LOGIC_VECTOR(4 downto 0);
-                 dois_destino : in STD_LOGIC_VECTOR(4 downto 0);
-                 tres_destino : in STD_LOGIC_VECTOR(4 downto 0);
                  -- Queues:
                  up_queue : in STD_LOGIC_VECTOR(4 downto 0);
                  up_queue_en : in STD_LOGIC;
@@ -31,7 +27,7 @@ entity nivel_2 is
                  dois_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0);
                  tres_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0);
                  -- Solicit_dir
-                 solicit_dir : out STD_LOGIC_VECTOR(2 downto 0);
+                 solicit_dir : out std_logic;
                  -- Solicit_enable
                  solicit_en : out STD_LOGIC
          );
@@ -133,6 +129,7 @@ architecture estrutural of nivel_2 is
     component gerador_saida is
         port (
                  -- entradas
+                 clk : in std_logic;
                  -- 00enable
                      ENABLE                : in std_logic;
                  -- 00cham_ativa
@@ -149,7 +146,7 @@ architecture estrutural of nivel_2 is
                  -- 00tres_solicit_floor
                      SOLICITE_2_OUT        : out std_logic_vector(4 downto 0);
                  -- 00solicit_dir
-                     DESCER_OUT            : out std_logic_vector(0 to 2);
+                     DESCER_OUT            : out std_logic;
                  -- 00solicit_en
                  SOLICIT_ENABLE_OUT    : out std_logic
              );
@@ -236,6 +233,7 @@ begin
 
     U_Gerador_saida: GERADOR_SAIDA
     port map(
+                clk => clk,
                 ENABLE => ENABLE,
                 CHAMADA_ATIVA_IN => cham_ativa,
                 DIRECAO_IN => direction,

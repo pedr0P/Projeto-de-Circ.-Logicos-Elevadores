@@ -10,6 +10,7 @@ entity cost_calculator is
              signal moving : in STD_LOGIC_VECTOR(1 downto 0);          -- 00 - parado, 10 - subindo, 01 - descendo
              signal elevator_cost : out STD_LOGIC_VECTOR(1 downto 0);   -- 00 (melhor), 01 (bom), 10 (ruim), 11 (inválido)
              signal enable : out STD_LOGIC
+             -- signal out_direction : out STD_LOGIC
          );   
 end cost_calculator;
 

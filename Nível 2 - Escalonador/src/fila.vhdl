@@ -13,14 +13,10 @@ entity fila is
              -- Up section
              up_queue   : in STD_LOGIC_VECTOR(4 downto 0);
              up_wr_en   : in STD_LOGIC;
-             -- up_empty   : out STD_LOGIC;
-             -- up_full    : out STD_LOGIC;
 
              -- Down section
              down_queue : in STD_LOGIC_VECTOR(4 downto 0);
              down_wr_en : in STD_LOGIC;
-             -- down_empty : out STD_LOGIC;
-             -- down_full  : out STD_LOGIC;
 
              data_out : out STD_LOGIC_VECTOR(4 downto 0);
              data_dir : out STD_LOGIC
@@ -38,12 +34,6 @@ architecture rtl of fila is
 
     signal up_qnt      : UNSIGNED(4 downto 0) := (others => '0');
     signal down_qnt    : UNSIGNED(4 downto 0) := (others => '0');
-
-    -- signal up_wfull    : STD_LOGIC := '0';
-    -- signal down_wfull  : STD_LOGIC := '0';
-
-    -- signal up_wempty   : STD_LOGIC := '1';
-    -- signal down_wempty : STD_LOGIC := '1';
 
     signal last_dir    : STD_LOGIC := '1';
 
@@ -85,10 +75,12 @@ begin
                         down_qnt <= down_qnt - 1;
 
                         data_out <= down_fila(to_integer(down_rd_ptr));
+                        data_dir <= '0';
                     else if (up_qnt /= "00000") then
                         up_rd_ptr <= up_rd_ptr + 1;
                         data_out <= up_fila(to_integer(up_rd_ptr));
                         up_qnt <= up_qnt - 1; end if;
+                        data_dir <= '1';
                     end if;
                     last_dir <= '0';
                 when '0' =>
@@ -97,11 +89,13 @@ begin
                         up_rd_ptr <= up_rd_ptr + 1;
                         data_out <= up_fila(to_integer(up_rd_ptr));
                         up_qnt <= up_qnt - 1;
+                        data_dir <= '1';
                     else if (down_qnt /= "00000") then
                         down_rd_ptr <= down_rd_ptr + 1;
                         down_qnt <= down_qnt - 1;
 
                         data_out <= down_fila(to_integer(down_rd_ptr)); end if;
+                        data_dir <= '0';
                     end if;
                     last_dir <= '1';
                 when others => -- Do nothing..
@@ -119,5 +113,4 @@ begin
     -- up_full <=  up_wfull;     down_full <= down_wfull;
     -- up_empty <= up_wempty;     down_empty <= down_wempty;
 
-    data_dir <= last_dir;
 end rtl;
