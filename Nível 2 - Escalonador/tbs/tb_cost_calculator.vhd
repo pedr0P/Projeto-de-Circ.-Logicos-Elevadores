@@ -15,8 +15,8 @@ architecture test of tb_cost_calculator is
 
     -- 3. Declaração do Componente a ser Testado (CUT)
     component cost_calculator is
-        generic (w : natural := 32);
         port (
+            signal enable : out STD_LOGIC;
             signal call_floor : in STD_LOGIC_VECTOR(4 downto 0);
             signal direction : in STD_LOGIC;
             signal floor_sensor : in STD_LOGIC_VECTOR(4 downto 0);
@@ -26,6 +26,7 @@ architecture test of tb_cost_calculator is
     end component;
 
     -- 4. Sinais para conectar ao CUT
+    signal s_enable : STD_LOGIC;
     signal s_call_floor : STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
     signal s_direction : STD_LOGIC := '0';
     signal s_floor_sensor : STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
@@ -38,10 +39,8 @@ begin
 
     -- 5. Instanciação do Componente (Unit Under Test - UUT)
     UUT : component cost_calculator
-        generic map (
-            w => C_W
-        )
         port map (
+            enable => s_enable,
             call_floor    => s_call_floor,
             direction     => s_direction,
             floor_sensor  => s_floor_sensor,

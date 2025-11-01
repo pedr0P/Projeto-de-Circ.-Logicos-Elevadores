@@ -1,77 +1,65 @@
-LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-USE ieee.numeric_std.all;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
 
-ENTITY gerador_saida IS
-    PORT (
+entity GERADOR_SAIDA is
+    port (
         -- entradas
-        chamada_ativa_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0);
-        direcao_in            : IN  STD_LOGIC; -- 1 indica subir, 0 indica descer
-        elevador_vencedor_in  : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+        ENABLE                : in std_logic;
+        CHAMADA_ATIVA_IN      : in  std_logic_vector(4 downto 0);
+        DIRECAO_IN            : in  std_logic; -- 1 indica subir, 0 indica descer
+        ELEVADOR_VENCEDOR_IN  : in  std_logic_vector(1 downto 0);
         
         -- saídas para os controladores locais
-        solicite_0_out        : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-        solicite_1_out        : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-        solicite_2_out        : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-        descer_out            : OUT STD_LOGIC_VECTOR(0 TO 2);
-        solicit_enable_out    : OUT STD_LOGIC;
-        
-        -- saídas para os registradores de limpeza
-        limpar_andar_out      : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
-        limpar_direcao_out    : OUT STD_LOGIC;
-        limpar_enable_out     : OUT STD_LOGIC
+        SOLICITE_0_OUT        : out std_logic_vector(4 downto 0);
+        SOLICITE_1_OUT        : out std_logic_vector(4 downto 0);
+        SOLICITE_2_OUT        : out std_logic_vector(4 downto 0);
+        DESCER_OUT            : out std_logic_vector(0 to 2);
+        SOLICIT_ENABLE_OUT    : out std_logic
     );
-END ENTITY gerador_saida;
+end entity GERADOR_SAIDA;
 
-ARCHITECTURE comportamental OF gerador_saida IS
-BEGIN
+architecture COMPORTAMENTAL of GERADOR_SAIDA is
+begin
 
     -- processo combinacional que roteia as saídas
-    PROCESS (chamada_ativa_in, direcao_in, elevador_vencedor_in)
-    BEGIN
-        
+    process (CHAMADA_ATIVA_IN, DIRECAO_IN, ELEVADOR_VENCEDOR_IN)
+    begin
+
         -- definição valores padrão
         -- por padrão, ninguém recebe a chamada.
-        solicite_0_out <= (OTHERS => '0');
-        solicite_1_out <= (OTHERS => '0');
-        solicite_2_out <= (OTHERS => '0');
-        descer_out     <= "000";
-        solicit_enable_out <= '0';
-        limpar_enable_out  <= '0';
-        
-        
+        SOLICITE_0_OUT <= (others => '0');
+        SOLICITE_1_OUT <= (others => '0');
+        SOLICITE_2_OUT <= (others => '0');
+        DESCER_OUT     <= "000";
+        SOLICIT_ENABLE_OUT <= '0';
+
+        if ENABLE = '1' then
+
         -- roteamento da chamada baseado no vencedor
-        CASE elevador_vencedor_in IS
-        
-            WHEN "00" => -- elevador 0 venceu
-                solicite_0_out <= chamada_ativa_in; -- manda o andar para o elevador 0
-                descer_out(0)  <= NOT direcao_in;   -- quando direcao_in for (subida), retorna 0
-                solicit_enable_out <= '1';
-                limpar_enable_out  <= '1';
+            case ELEVADOR_VENCEDOR_IN is
 
-            WHEN "01" => -- elevador 1 venceu
-                solicite_1_out <= chamada_ativa_in;
-                descer_out(1)  <= NOT direcao_in;
-                solicit_enable_out <= '1';
-                limpar_enable_out  <= '1';
+                when "00" => -- elevador 0 venceu
+                    SOLICITE_0_OUT <= CHAMADA_ATIVA_IN; -- manda o andar para o elevador 0
+                    DESCER_OUT(0)  <= not DIRECAO_IN;   -- quando direcao_in for (subida), retorna 0
+                    SOLICIT_ENABLE_OUT <= '1';
 
-            WHEN "10" => -- elevador 2 venceu
-                solicite_2_out <= chamada_ativa_in;
-                descer_out(2)  <= NOT direcao_in;
-                solicit_enable_out <= '1';
-                limpar_enable_out  <= '1';
-                
-            WHEN OTHERS => -- valores inválidos
-                -- nenhum comando é enviado e os valores padrão são usados
-                NULL; 
-                
-        END CASE;
+                when "01" => -- elevador 1 venceu
+                    SOLICITE_1_OUT <= CHAMADA_ATIVA_IN;
+                    DESCER_OUT(1)  <= not DIRECAO_IN;
+                    SOLICIT_ENABLE_OUT <= '1';
 
-        -- definição das saídas de limpeza
-        -- elas sempre passam a chamada ativa, mas os registradores só devem usá-las se limpar_enable_out for 1
-        limpar_andar_out   <= chamada_ativa_in;
-        limpar_direcao_out <= direcao_in;
-        
-    END PROCESS;
+                when "10" => -- elevador 2 venceu
+                    SOLICITE_2_OUT <= CHAMADA_ATIVA_IN;
+                    DESCER_OUT(2)  <= not DIRECAO_IN;
+                    SOLICIT_ENABLE_OUT <= '1';
 
-END ARCHITECTURE comportamental;
+                when others => -- valores inválidos
+                               -- nenhum comando é enviado e os valores padrão são usados
+                    null; 
+
+            end case;
+        end if;
+    end process;
+
+end architecture COMPORTAMENTAL;
