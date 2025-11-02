@@ -102,27 +102,74 @@ begin
     -- Testes:
     stimulus: process
     begin
-        -- Chamada Concorrente
-        up_queue <= "01000";
+        -- Reset inicial
+        reset <= '1';
+        wait for 10 ns;
+        reset <= '0';
+
+        -- Caso 1: Pedir subida no andar 2 (Quem deve ganhar é o elevador 1)
+        up_queue <= "00010"; -- Andar 2 (subindo)
         up_queue_en <= '1';
-        down_queue <= "00010";
+        down_queue <= "00000";
+        down_queue_en <= '0';
+        um_floor_sensor <= "00010";   -- Elevador 1 está no andar 2
+        dois_floor_sensor <= "00000"; -- Elevador 2 no andar 0
+        tres_floor_sensor <= "00000"; -- Elevador 3 no andar 0
+        um_moving <= "00";   -- Elevador 1 está parado
+        dois_moving <= "00"; -- Elevador 2 está parado
+        tres_moving <= "00"; -- Elevador 3 está parado
+
+        wait for 20 ns;
+        up_queue_en <= '0';
+        down_queue_en <= '0';
+        wait for 20 ns;
+        
+        -- Caso 2: Pedir
+        -- Test case 2: Pedir descida no andar 10 (ganhador: elevador 3)
+        up_queue <= "00000";
+        up_queue_en <= '0';
+        down_queue <= "01010"; -- Andar floor 10 (descendo)
         down_queue_en <= '1';
-        um_floor_sensor <= "11100";
-        dois_floor_sensor <= "11100";
-        tres_floor_sensor <= "11100";
-        um_moving <= "01";
+        um_floor_sensor <= "00001";   -- Elevador 1 está no andar 1
+        dois_floor_sensor <= "00010"; -- Elevador 2 no andar 2
+        tres_floor_sensor <= "01011"; -- Elevador 3 no andar 11
+        um_moving <= "00";   -- Elevador 1 está parado
+        dois_moving <= "10"; -- Elevador 2 está subindo
+        tres_moving <= "01"; -- Elevador 3 está descendo
+
+        wait for 20 ns;
+        up_queue_en <= '0';
+        down_queue_en <= '0';
+        wait for 20 ns;
+
+        -- Test case 3: Nenhum pedido (ganhador: ninguém)
+        up_queue <= "00000";
+        up_queue_en <= '0';
+        down_queue <= "00000";
+        down_queue_en <= '0';
+        um_floor_sensor <= "00000";
+        dois_floor_sensor <= "00000";
+        tres_floor_sensor <= "00000";
+        um_moving <= "00";
         dois_moving <= "00";
-        tres_moving <= "10";
+        tres_moving <= "00";
 
         wait for 20 ns;
         up_queue_en <= '0';
         down_queue_en <= '0';
         wait for 20 ns;
 
-        wait for 20 ns;
-        up_queue_en <= '0';
+        -- Caso 3: Pedir subida no andar 10 e descida no andar 4. (ganhador:)
+        up_queue <= "00010"; -- Andar 2 (subindo)
+        up_queue_en <= '1';
+        down_queue <= "00000";
         down_queue_en <= '0';
-        wait for 20 ns;
+        um_floor_sensor <= "01001";   -- Elevador 1 está no andar 9
+        dois_floor_sensor <= "00000"; -- Elevador 2 no andar 0
+        tres_floor_sensor <= "00101"; -- Elevador 3 no andar 5
+        um_moving <= "10";   -- Elevador 1 está subindo
+        dois_moving <= "00"; -- Elevador 2 está parado
+        tres_moving <= "01"; -- Elevador 3 está descendo
 
         wait for 20 ns;
         up_queue_en <= '0';
@@ -135,3 +182,4 @@ begin
     end process;
 
 end behavior;
+
