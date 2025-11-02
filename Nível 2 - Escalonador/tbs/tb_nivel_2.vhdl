@@ -61,6 +61,7 @@ architecture behavior of tb_nivel_2 is
                  solicit_en : out STD_LOGIC
          );   
     end component;
+    signal sim_finished : BOOLEAN := false;
 
 begin
 
@@ -87,12 +88,15 @@ begin
         );
 
     -- Geração de Clock
-    clk_process : process
+    clk_gen_proc : process
     begin
-        clk <= '0';
-        wait for 10 ns;
-        clk <= '1';
-        wait for 10 ns;
+        while not sim_finished loop 
+            clk <= '0';
+            wait for 10 ns;
+            clk <= '1';
+            wait for 10 ns;
+        end loop;
+        wait;
     end process;
 
     -- Testes:
@@ -172,6 +176,7 @@ begin
         down_queue_en <= '0';
         wait for 20 ns;
 
+        sim_finished <= true;
         -- End of simulation
         wait;
     end process;
