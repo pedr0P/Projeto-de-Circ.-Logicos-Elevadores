@@ -159,7 +159,24 @@ begin
         down_queue_en <= '0';
         wait for 20 ns;
 
-        -- Caso 3: Pedir subida no andar 10 e descida no andar 4. (ganhador:)
+        -- Test Case 4: Subida no andar 16
+        up_queue <= "10000";
+        up_queue_en <= '1';
+        down_queue <= "00000";
+        down_queue_en <= '0';
+        um_floor_sensor <= "00000";
+        dois_floor_sensor <= "00000";
+        tres_floor_sensor <= "00000";
+        um_moving <= "00";   -- Parado
+        dois_moving <= "10"; -- Subindo
+        tres_moving <= "00"; -- Parado
+
+        wait for 20 ns;
+        up_queue_en <= '0';
+        down_queue_en <= '0';
+        wait for 20 ns;
+
+        -- Caso 3: Pedir subida no andar 10 e descida no andar 4. (ganhador: 3 e 1)
         up_queue <= "01010"; -- Andar 2 (subindo)
         up_queue_en <= '1';
         down_queue <= "00100";
