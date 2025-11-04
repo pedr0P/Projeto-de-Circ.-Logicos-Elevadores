@@ -107,8 +107,8 @@ begin
         wait for 10 ns;
         reset <= '0';
 
-        -- Caso 1: Pedir subida no andar 2 (Quem deve ganhar é o elevador 1)
-        up_queue <= "00010"; -- Andar 2 (subindo)
+        -- Caso 1: Pedir subida no andar 4 (Quem deve ganhar é o elevador 1)
+        up_queue <= "00100"; -- Andar 4 (subindo)
         up_queue_en <= '1';
         down_queue <= "00000";
         down_queue_en <= '0';
@@ -160,10 +160,10 @@ begin
         wait for 20 ns;
 
         -- Caso 3: Pedir subida no andar 10 e descida no andar 4. (ganhador:)
-        up_queue <= "00010"; -- Andar 2 (subindo)
+        up_queue <= "01010"; -- Andar 2 (subindo)
         up_queue_en <= '1';
-        down_queue <= "00000";
-        down_queue_en <= '0';
+        down_queue <= "00100";
+        down_queue_en <= '1';
         um_floor_sensor <= "01001";   -- Elevador 1 está no andar 9
         dois_floor_sensor <= "00000"; -- Elevador 2 no andar 0
         tres_floor_sensor <= "00101"; -- Elevador 3 no andar 5
@@ -174,7 +174,7 @@ begin
         wait for 20 ns;
         up_queue_en <= '0';
         down_queue_en <= '0';
-        wait for 20 ns;
+        wait for 100 ns;
 
         sim_finished <= true;
         -- End of simulation
