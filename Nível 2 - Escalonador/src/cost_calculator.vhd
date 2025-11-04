@@ -23,8 +23,8 @@ begin
     begin            
         if (call_floor > "00000" and call_floor <= "11111") then
             enable <= '1';
-            v_current_floor_int := v_current_floor_int;
-            v_call_floor_int := v_current_floor_int;
+            v_current_floor_int := floor_sensor;
+            v_call_floor_int := call_floor;
 
             -- Valor padrão (Custo Inválido)
             elevator_cost <= "11";
