@@ -33,15 +33,21 @@ begin
 
                     when "00" => -- elevador 0 venceu
                         SOLICITE_0_OUT <= CHAMADA_ATIVA_IN; -- manda o andar para o elevador 0
+                        SOLICITE_1_OUT <= (others => '0');
+                        SOLICITE_2_OUT <= (others => '0');
                         DESCER_OUT  <= DIRECAO_IN;
                         SOLICIT_ENABLE_OUT <= '1';
 
                     when "01" => -- elevador 1 venceu
+                        SOLICITE_0_OUT <= (others => '0');
                         SOLICITE_1_OUT <= CHAMADA_ATIVA_IN;
+                        SOLICITE_2_OUT <= (others => '0');
                         DESCER_OUT  <= DIRECAO_IN;
                         SOLICIT_ENABLE_OUT <= '1';
 
                     when "10" => -- elevador 2 venceu
+                        SOLICITE_0_OUT <= (others => '0');
+                        SOLICITE_1_OUT <= (others => '0');
                         SOLICITE_2_OUT <= CHAMADA_ATIVA_IN;
                         DESCER_OUT  <= DIRECAO_IN;
                         SOLICIT_ENABLE_OUT <= '1';
