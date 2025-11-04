@@ -6,17 +6,17 @@ entity gerador_saida is
     port (
              clk : in std_logic;
              -- entradas
-             ENABLE                : in std_logic;
-             CHAMADA_ATIVA_IN      : in  std_logic_vector(4 downto 0);
-             DIRECAO_IN            : in  std_logic; -- 1 indica subir, 0 indica descer
-             ELEVADOR_VENCEDOR_IN  : in  std_logic_vector(1 downto 0);
+             ENABLE                : in std_logic := '0';
+             CHAMADA_ATIVA_IN      : in  std_logic_vector(4 downto 0) := (others => '0');
+             DIRECAO_IN            : in  std_logic := '0'; -- 1 indica subir, 0 indica descer
+             ELEVADOR_VENCEDOR_IN  : in  std_logic_vector(1 downto 0) := (others => '0');
 
              -- saídas para os controladores locais
-             SOLICITE_0_OUT        : out std_logic_vector(4 downto 0);
-             SOLICITE_1_OUT        : out std_logic_vector(4 downto 0);
-             SOLICITE_2_OUT        : out std_logic_vector(4 downto 0);
-             DESCER_OUT            : out std_logic;
-             SOLICIT_ENABLE_OUT    : out std_logic
+             SOLICITE_0_OUT        : out std_logic_vector(4 downto 0) := (others => '0');
+             SOLICITE_1_OUT        : out std_logic_vector(4 downto 0) := (others => '0');
+             SOLICITE_2_OUT        : out std_logic_vector(4 downto 0) := (others => '0');
+             DESCER_OUT            : out std_logic := '0';
+             SOLICIT_ENABLE_OUT    : out std_logic := '0'
          );
 end entity gerador_saida;
 

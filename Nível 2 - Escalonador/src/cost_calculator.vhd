@@ -5,11 +5,11 @@ use IEEE.numeric_std.all;
 entity cost_calculator is
     port (
              signal call_floor : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
-             signal direction : in STD_LOGIC;                          -- 1 para subir e 0 para descer
-             signal floor_sensor : in STD_LOGIC_VECTOR(4 downto 0);
-             signal moving : in STD_LOGIC_VECTOR(1 downto 0);          -- 00 - parado, 10 - subindo, 01 - descendo
-             signal elevator_cost : out STD_LOGIC_VECTOR(1 downto 0);   -- 00 (melhor), 01 (bom), 10 (ruim), 11 (inválido)
-             signal enable : out STD_LOGIC
+             signal direction : in STD_LOGIC := '0';                          -- 1 para subir e 0 para descer
+             signal floor_sensor : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+             signal moving : in STD_LOGIC_VECTOR(1 downto 0) := (others => '0');          -- 00 - parado, 10 - subindo, 01 - descendo
+             signal elevator_cost : out STD_LOGIC_VECTOR(1 downto 0) := (others => '0');   -- 00 (melhor), 01 (bom), 10 (ruim), 11 (inválido)
+             signal enable : out STD_LOGIC := '0'
              -- signal out_direction : out STD_LOGIC
          );   
 end cost_calculator;

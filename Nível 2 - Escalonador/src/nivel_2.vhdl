@@ -5,31 +5,31 @@ use IEEE.numeric_std.all;
 entity nivel_2 is
     port (
              -- Entradas de Controle e Sensor
-                 clk   : in STD_LOGIC;
-                 reset : in STD_LOGIC;
+                 clk   : in STD_LOGIC := '0';
+                 reset : in STD_LOGIC := '0';
              -- Entradas:
                  -- Queues:
-                 up_queue : in STD_LOGIC_VECTOR(4 downto 0);
-                 up_queue_en : in STD_LOGIC;
-                 down_queue : in STD_LOGIC_VECTOR(4 downto 0);
-                 down_queue_en : in STD_LOGIC;
+                 up_queue : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 up_queue_en : in STD_LOGIC := '0';
+                 down_queue : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 down_queue_en : in STD_LOGIC := '0';
                  -- Floor_sensor:
-                 um_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0);
-                 dois_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0);
-                 tres_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0);
+                 um_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 dois_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 tres_floor_sensor: in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
                  -- Moving:
-                 um_moving : in STD_LOGIC_VECTOR(1 downto 0);
-                 dois_moving : in STD_LOGIC_VECTOR(1 downto 0);
-                 tres_moving : in STD_LOGIC_VECTOR(1 downto 0);
+                 um_moving : in STD_LOGIC_VECTOR(1 downto 0) := (others => '0');
+                 dois_moving : in STD_LOGIC_VECTOR(1 downto 0) := (others => '0');
+                 tres_moving : in STD_LOGIC_VECTOR(1 downto 0) := (others => '0');
              -- Saídas
                  -- Solicit_floor
-                 um_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0);
-                 dois_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0);
-                 tres_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0);
+                 um_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 dois_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+                 tres_solicit_floor : out STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
                  -- Solicit_dir
-                 solicit_dir : out std_logic;
+                 solicit_dir : out std_logic := '0';
                  -- Solicit_enable
-                 solicit_en : out STD_LOGIC
+                 solicit_en : out STD_LOGIC := '0'
          );
 end nivel_2;
 

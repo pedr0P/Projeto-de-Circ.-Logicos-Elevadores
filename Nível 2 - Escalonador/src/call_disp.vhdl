@@ -7,13 +7,13 @@ use IEEE.NUMERIC_STD.ALL;
 -- Leia pelo data_out e rd_en = '1' (Se não estiver vazio)
 entity call_disp is
     port ( 
-           clk        : in STD_LOGIC;
+           clk        : in STD_LOGIC := '0';
 
-           data_in    : in STD_LOGIC_VECTOR(4 downto 0); -- Get from data_out
-           data_dir   : in STD_LOGIC; -- Get from data_dir
+           data_in    : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0'); -- Get from data_out
+           data_dir   : in STD_LOGIC := '0'; -- Get from data_dir
 
-           cham_ativa : out STD_LOGIC_VECTOR(4 downto 0); -- Pedido para algum elevador atender:
-           direction  : out STD_LOGIC -- Get from data_direction
+           cham_ativa : out STD_LOGIC_VECTOR(4 downto 0) := (others => '0'); -- Pedido para algum elevador atender:
+           direction  : out STD_LOGIC := '0' -- Get from data_direction
        );
 end call_disp;
 

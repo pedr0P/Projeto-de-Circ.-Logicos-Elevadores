@@ -4,9 +4,9 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity custo_distancia is
     port (
-        chamada_ativa : in std_logic_vector(4 downto 0);
-        floor_sensor : in std_logic_vector(4 downto 0);
-        distancia : out std_logic_vector(4 downto 0)
+        chamada_ativa : in std_logic_vector(4 downto 0) := (others => '0');
+        floor_sensor : in std_logic_vector(4 downto 0) := (others => '0');
+        distancia : out std_logic_vector(4 downto 0) := (others => '0') 
     );
 end entity custo_distancia;
 

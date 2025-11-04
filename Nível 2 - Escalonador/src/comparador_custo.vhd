@@ -5,16 +5,16 @@ USE ieee.numeric_std.all;
 ENTITY comparador_custo IS
     PORT (
         -- UMA ENTRADA PARA CADA ELEVADOR
-        distancia_0_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0);
-        distancia_1_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0);
-        distancia_2_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0);
+        distancia_0_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0) := (others => '0');
+        distancia_1_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0) := (others => '0');
+        distancia_2_in      : IN  STD_LOGIC_VECTOR(4 DOWNTO 0) := (others => '0');
         
-        custo_elev_0_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-        custo_elev_1_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
-        custo_elev_2_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0);
+        custo_elev_0_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (others => '0');
+        custo_elev_1_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (others => '0');
+        custo_elev_2_in : IN  STD_LOGIC_VECTOR(1 DOWNTO 0) := (others => '0');
         
         -- SAÍDA: ÍNDICE DO ELEVADOR COM MENOR CUSTO
-        elevador_vencedor_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0) -- "00", "01" ou "10"
+        elevador_vencedor_out : OUT STD_LOGIC_VECTOR(1 DOWNTO 0) := (others => '0') -- "00", "01" ou "10"
     );
 END ENTITY comparador_custo;
 

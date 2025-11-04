@@ -7,19 +7,19 @@ use IEEE.NUMERIC_STD.ALL;
 -- Leia pelo data_out e rd_en = '1' (Se não estiver vazio)
 entity fila is
     port (
-             clk        : in STD_LOGIC;
-             reset      : in STD_LOGIC;
+             clk        : in STD_LOGIC := '0';
+             reset      : in STD_LOGIC := '0';
 
              -- Up section
-             up_queue   : in STD_LOGIC_VECTOR(4 downto 0);
-             up_wr_en   : in STD_LOGIC;
+             up_queue   : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+             up_wr_en   : in STD_LOGIC := '0';
 
              -- Down section
-             down_queue : in STD_LOGIC_VECTOR(4 downto 0);
-             down_wr_en : in STD_LOGIC;
+             down_queue : in STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+             down_wr_en : in STD_LOGIC := '0';
 
-             data_out : out STD_LOGIC_VECTOR(4 downto 0);
-             data_dir : out STD_LOGIC
+             data_out : out STD_LOGIC_VECTOR(4 downto 0) := (others => '0');
+             data_dir : out STD_LOGIC := '0'
          );
 end fila;
 
