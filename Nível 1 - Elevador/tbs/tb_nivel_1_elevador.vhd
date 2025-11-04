@@ -86,10 +86,10 @@ begin
     -- 7. Processo de Estímulo (Simula o Usuário e o Escalonador)
     stim_proc : process is
     begin
-        report "Iniciando simulação do nivel_1_elevador...";
+        report "Iniciando simulacao do nivel_1_elevador...";
 
         -- --- CENÁRIO 1: Reset do Sistema ---
-        report "Cenário 1: Resetando o sistema.";
+        report "Cenario 1: Resetando o sistema.";
         s_reset <= '1';
         wait for C_CLK_PERIOD * 2;
         s_reset <= '0';
@@ -99,7 +99,7 @@ begin
         -- 'seg7_D0' e 'seg7_D1' devem mostrar '0'.
 
         -- --- CENÁRIO 2: Chamada INTERNA (Usuário) ---
-        report "Cenário 2: Chamada interna para o andar 5.";
+        report "Cenario 2: Chamada interna para o andar 5.";
         
         -- Simula o usuário apertando o botão do andar 5
         s_dest_request(5) <= '1';
@@ -122,7 +122,7 @@ begin
         wait for C_CLK_PERIOD * 10; -- Espera um tempo
 
         -- --- CENÁRIO 3: Chamada EXTERNA (Escalonador) ---
-        report "Cenário 3: Chamada externa para o andar 2 (Descendo).";
+        report "Cenario 3: Chamada externa para o andar 2 (Descendo).";
         
         -- Simula o Escalonador enviando uma ordem
         s_solicit_enable <= '1';
@@ -145,7 +145,7 @@ begin
         -- CHECK (GTKWave): 'moving' = "00", 'door_open_closed' = '1'
         -- 'seg7_D0' deve mostrar '2'.
 
-        report "Simulação concluída.";
+        report "Simulacao concluida.";
         
         sim_finished <= true; 
         -- Espera para sempre (impede que stim_proc reinicie)
